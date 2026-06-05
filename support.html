@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - AURA Sleep: Binaural Beats</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #e2e8f0;
+            background: #020617;
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(2,6,23,0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(0,229,201,0.1);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        .nav-logo {
+            color: #00e5c9;
+            font-size: 22px;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .nav-logo::before {
+            content: '◆';
+            font-size: 14px;
+            color: #00e5c9;
+            margin-right: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00e5c9;
+        }
+        .nav-links a.active {
+            color: #fff;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #00e5c9, #00b4d8);
+            color: #020617;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .page-header {
+            margin-bottom: 48px;
+        }
+        .page-header h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #00e5c9, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .app-name {
+            font-size: 18px;
+            color: #00e5c9;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(0,229,201,0.08), rgba(0,180,216,0.05));
+            border: 1px solid rgba(0,229,201,0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        .contact-card h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .contact-card p {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .contact-card a {
+            color: #00e5c9;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00e5c9, #00b4d8);
+            color: #020617;
+            padding: 14px 32px;
+            border-radius: 28px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            margin-top: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,229,201,0.3);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,229,201,0.4);
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+        p {
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+        a {
+            color: #00e5c9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 24px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 17px;
+            color: #e2e8f0;
+            margin-bottom: 12px;
+        }
+        .faq-answer {
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .quick-start {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px;
+            margin-top: 24px;
+        }
+        .quick-start h3 {
+            margin-top: 0;
+            color: #00e5c9;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .footer p {
+            font-size: 14px;
+            color: #475569;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #00e5c9;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content { padding: 100px 20px 60px; }
+            .page-header h1 { font-size: 32px; }
+            .contact-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">DualRise</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/aura.html">AURA</a>
+                <a href="/support" class="active">Support</a>
+                <a href="mailto:qianyinchen@dualrise.store">Contact</a>
+                <a href="https://apps.apple.com/app/aura-sleep-binaural-beats" class="nav-cta">Download</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="page-header">
+            <h1>Support</h1>
+            <div class="app-name">AURA Sleep: Binaural Beats</div>
+        </div>
+
+        <div class="contact-card">
+            <h2>We're here to help</h2>
+            <p>Have a question, feedback, or need assistance?</p>
+            <p><a href="mailto:qianyinchen@dualrise.store">qianyinchen@dualrise.store</a></p>
+            <a href="mailto:qianyinchen@dualrise.store" class="btn">Email Support</a>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">What are binaural beats?</div>
+            <div class="faq-answer">Binaural beats are an auditory illusion created when two slightly different frequencies are played in each ear. Your brain perceives the difference as a rhythmic beat. For example, if 200Hz plays in your left ear and 210Hz in your right, your brain hears a 10Hz beat. Research suggests this can influence brainwave patterns through a process called Frequency-Following Response (FFR).</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Do I need headphones?</div>
+            <div class="faq-answer">Yes, stereo headphones are required for the binaural effect. The left-right frequency difference is the mechanism that makes binaural beats work. Mono speakers or single-ear headphones won't create the effect. For noise and natural sounds, speakers work but the neural tone layer will be less effective.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is AURA a medical device?</div>
+            <div class="faq-answer">No. AURA is a wellness and lifestyle application, not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition, including insomnia, ADHD, anxiety, or tinnitus. If you have a medical condition, consult a healthcare professional before use.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I use AURA while driving?</div>
+            <div class="faq-answer">No. Do not use AURA while driving or operating machinery. Binaural beats can cause drowsiness and disorientation, especially with Sleep and Calm presets. Safety first — only use AURA when you can safely relax or focus without needing to react to your environment.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I use AURA for ADHD focus?</div>
+            <div class="faq-answer">For ADHD focus, we recommend: <strong>Deep Focus</strong> (15Hz Beta), <strong>ADHD Work Mode</strong> (Café + Beta combination), or <strong>White Noise</strong> (with embedded Beta). Start with 25-50 minute sessions. Use headphones for the binaural effect. The external rhythm provides "scaffolding" for attention. Combine with the café ambience if you work better with social energy around you.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can AURA help with tinnitus?</div>
+            <div class="faq-answer">AURA includes <strong>Blue</strong> and <strong>Violet</strong> noise colors specifically designed for high-frequency tinnitus masking. These emphasize the frequency range where many tinnitus sufferers experience phantom sounds (8-16kHz). While not a treatment, they may provide auditory masking comfort. Start at low volume and adjust to comfort.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Does AURA collect my data?</div>
+            <div class="faq-answer">No. AURA is built privacy-first. All session data, preferences, and usage patterns stay on your device. We do not track your listening habits, sell your data, or use third-party analytics SDKs. We don't even require an account. Deleting the app removes all data permanently.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I create custom combinations?</div>
+            <div class="faq-answer">Go to the <strong>Combinations</strong> tab. Tap "Create New" and select up to 3 layers: a Neural Tone (binaural beats), a Noise Color, and/or an Environment (Natural or Human Space). Adjust each layer's volume independently. Save your combination with a custom name. You can create unlimited combinations.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">The sound stops when I lock my screen. How do I fix this?</div>
+            <div class="faq-answer">AURA supports background audio playback. If sound stops when you lock your screen, check: 1) iOS Settings > AURA > Background App Refresh is ON, 2) Control Center shows the audio player is active, 3) You haven't enabled Low Power Mode (which restricts background audio). If issues persist, restart the app or contact support.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I use AURA with Apple Watch?</div>
+            <div class="faq-answer">Apple Watch integration is planned for a future update. You'll be able to start/stop sessions, adjust volume, and view basic controls from your wrist. HRV (heart rate variability) adaptive audio is also in development — the app will adjust frequencies based on your physiological state.</div>
+        </div>
+
+        <h2>Quick Start Guide</h2>
+
+        <div class="quick-start">
+            <h3>For Sleep</h3>
+            <ol>
+                <li>Choose <strong>Deep Sleep</strong> (1Hz Delta) or <strong>Abyss</strong> (2.5Hz Delta)</li>
+                <li>Start 20-30 minutes before bed</li>
+                <li>Volume: barely audible</li>
+                <li>Use stereo headphones</li>
+                <li>For severe insomnia, try <strong>Night Cocoon</strong> (3-layer combination)</li>
+            </ol>
+        </div>
+
+        <div class="quick-start">
+            <h3>For Focus</h3>
+            <ol>
+                <li>Choose <strong>Deep Focus</strong> (15Hz Beta) or <strong>Flow State</strong> (40Hz Gamma)</li>
+                <li>Set timer for 25-50 minutes (Pomodoro-style)</li>
+                <li>Volume: moderate, not competing with thoughts</li>
+                <li>Use stereo headphones for binaural effect</li>
+                <li>For ADHD, try <strong>ADHD Work Mode</strong> combination</li>
+            </ol>
+        </div>
+
+        <div class="quick-start">
+            <h3>For Tinnitus Relief</h3>
+            <ol>
+                <li>Choose <strong>Blue</strong> (30Hz High Beta) or <strong>Violet</strong> (20Hz Beta-Gamma)</li>
+                <li>Start at low volume, adjust to comfort</li>
+                <li>Use for 15-30 minute sessions</li>
+                <li>Not recommended for sleep — brightness signals wakefulness</li>
+            </ol>
+        </div>
+
+        <h2>Contact Us</h2>
+        <p>Can't find what you're looking for? Reach out directly:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:qianyinchen@dualrise.store">qianyinchen@dualrise.store</a></li>
+            <li><strong>Website:</strong> <a href="https://dualrise.store">https://dualrise.store</a></li>
+            <li><strong>Company:</strong> DualRise Studio</li>
+            <li><strong>Response Time:</strong> Within 24-48 hours</li>
+        </ul>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Use</a>
+            </div>
+            <p>© 2026 DualRise Studio. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
